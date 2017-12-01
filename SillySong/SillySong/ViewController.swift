@@ -47,11 +47,6 @@ func shortenName(name:String)->String
     var lowercaseName = name.lowercased()
     let vowels = CharacterSet(charactersIn: "aeiou")
     
-    //create index for substring
-    let indexStart = lowercaseName.index(lowercaseName.startIndex, offsetBy: 1)
-    let nameWithoutBeginningCharacter = lowercaseName[indexStart...]
-    let beginningCharacter = lowercaseName.index(lowercaseName.endIndex,offsetBy:0)
-    
     //check for empty string
     if(lowercaseName == "")
     {
