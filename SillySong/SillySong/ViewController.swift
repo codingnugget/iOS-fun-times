@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //implemented a delegate for the text field in this class, point it here
+        nameField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +36,15 @@ class ViewController: UIViewController {
     
 }
 
+// UITextFieldDelegate
+extension ViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+}
+
 //test lyrics
 let bananaTemplate = ["<FULL_NAME>, <FULL_NAME>, Bo B<SHORT_NAME>",
                       "Banana Fana Fo F<SHORT_NAME>",
@@ -44,7 +54,7 @@ let bananaTemplate = ["<FULL_NAME>, <FULL_NAME>, Bo B<SHORT_NAME>",
 //creates the flow in lyrics. returns name in all lowercase, and remove any consonents (if they exist) before the first vowel
 func shortenName(name:String)->String
 {
-    var lowercaseName = name.lowercased()
+    let lowercaseName = name.lowercased()
     let vowels = CharacterSet(charactersIn: "aeiou")
     
     //check for empty string
